@@ -47,41 +47,7 @@ Still, there's some variable-length columns that would be more beneficial if wer
 
 After initial preprocessing, performing dataset simplifications and reordering the order of the data, we are left with the following format for each recipe:
 
-id                                                           08923
-name                                          Easy Ravioli Lasagna
-cuisine                                                    Italian
-n_servings                                                       8
-time_s                                                        3300
-piquancy                                                         0
-sweetness                                                   0.1667
-sourness                                                    0.1667
-saltiness                                                   0.8333
-meatiness                                                   0.3333
-bitterness                                                  0.8333
-energy_kcal                                                2881.53
-fat_g                                                        35.78
-protein_g                                                    60.53
-carbs_g                                                      31.41
-vitamin_e_g                                                      0
-vitamin_c_g                                                   0.01
-vitamin_b12_g                                                    0
-vitamin_d_iu                                                  7.02
-vitamin_k_g                                                      0
-vitamin_a_iu                                               1537.29
-vitamin_9_g                                                      0
-vitamin_b6_g                                                     0
-fatty_acids_g                                                16.33
-cholesterol_g                                                 0.12
-sodium_g                                                      1.27
-fiber_g                                                       5.71
-sugar_g                                                       9.17
-calcium_g                                                     0.36
-iron_g                                                           0
-magnesium_g                                                   0.07
-zinc_g                                                           0
-potassium_g                                                   0.73
-url              http://www.yummly.com/recipe/Easy-Ravioli-Lasa...
-ingredients      ["italian sausage", "marinara sauce", "crushed...
+![row_format](row_format.PNG "Dataset Row Format")
 
 
 Below, the distribution of cuisine occurences in the dataset is plotted. It's evident that certain cuisines like the american, italian and mexican cuisines are heavily overrepresented. We would counter this a bit by normalizing the weights of each cuisine during data analysis and working with average values.
