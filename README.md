@@ -7,4 +7,4 @@
 
 ## Cuisine Visualizer
 
-[Milestone 1](milestone-1/milestone1.md) 
+[Milestone 1](milestone-1/README.md) 
