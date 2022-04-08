@@ -6,5 +6,4 @@
 | Bhargav Venugopal  | 349343 |
 
 ## Cuisine Visualizer
-
-[Milestone 1](#milestone-1) 
+[Milestone 1](milestone-1/README.md) 
