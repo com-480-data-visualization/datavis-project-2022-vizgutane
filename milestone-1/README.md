@@ -43,7 +43,7 @@ Still, there's some variable-length columns that would be more beneficial if wer
 
 - The keys of the 'flavors' dictionary is distributed to six new columns replacing the 'flavors' column as it is either empty or contains the six same keys for each recipe. 
 
-- The 'cuisine' variable length array is replaced by the first item in the array (unless it holds the out-of-place 'kid-friendly' value). We justify this as only a small minority of the dishes' are categorized as multi-cuisine.
+- The 'cuisine' variable length array is replaced by the first item in the array. We justify this as only a small minority of the dishes' are categorized as multi-cuisine.
 
 After initial preprocessing, performing dataset simplifications and reordering the order of the data, we are left with the following format for each recipe:
 
