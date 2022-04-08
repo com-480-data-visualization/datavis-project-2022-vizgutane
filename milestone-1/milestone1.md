@@ -49,12 +49,9 @@ After initial preprocessing, performing dataset simplifications and reordering t
 
 ![row_format](row_format.PNG "Dataset Row Format")
 
-
 Below, the distribution of cuisine occurences in the dataset is plotted. It's evident that certain cuisines like the american, italian and mexican cuisines are heavily overrepresented. We would counter this a bit by normalizing the weights of each cuisine during data analysis and working with average values.
 
 ![cuisine distribution](cuisine_distribution.PNG "Cuisine Occurence in Dataset")
-
-
 
 ### Related work
 
@@ -67,10 +64,12 @@ Our dataset has mostly been used previously for image recognition and for machin
 
 Our approach is unique because we aim to value-add users with our visualizations, rather than just show data analysis like clustering etc. When we looked for other explorations that might be similar to ours, we found the following 2 sites.
 
-[Cuisine Ingredients by Nathan Yau](https://flowingdata.com/2018/09/18/cuisine-ingredients/)
+[Cuisine Ingredients by Nathan Yau](https://flowingdata.com/2018/09/18/cuisine-ingredients/)  
+
 We were particularly intrigued by the scatter plot labeled “INGREDIENT USAGE BY CUISINE”. We found the correlation of ingredients between various cuisines very interesting and we wish to use a similar dataset but with better visuals and interactivity. However, an everyday user cannot do much with the information presented and we aim to do that with our data visualization. 
 
-[Exploring cuisines with Yummly by Ali Benlalah](https://alioben.github.io/yummly/)
+[Exploring cuisines with Yummly by Ali Benlalah](https://alioben.github.io/yummly/)  
+
 We found the visualization describing the similarities between various cuisines interesting. However, from a user perspective, we found that the visualizations were not intuitive and so we took some time trying to understand what they were attempting to show. We took that as a pointer for our own visualizations as it just goes to show that despite having good data to show, without good visualization, you might not achieve the intended outcome. 
 
 
