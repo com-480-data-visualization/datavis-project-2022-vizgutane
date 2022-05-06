@@ -12,7 +12,7 @@ var projection = d3.geoEquirectangular().translate([w/2, h/2]);
 var path = d3.geoPath().projection(projection);
 
 // load data  
-var worldmap = d3.json("../data/countries_optimalized.geojson");
+var worldmap = d3.json("./milestone-2/data/countries_optimalized.geojson")
 
 // customizable and expandable async function to draw 
 Promise.all([worldmap]).then(function( values){    

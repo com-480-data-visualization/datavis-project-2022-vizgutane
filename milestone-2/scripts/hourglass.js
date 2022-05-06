@@ -13,7 +13,7 @@ const svg2 = d3.select("#hourglass")
 );
 
 // Parse the Data
-d3.csv("./data/cuisine_avg.csv").then( function(data) {
+d3.csv("./milestone-2/data/cuisine_avg.csv").then( function(data) {
 
     // List of groups = header of the csv files
     const keys = data.columns.slice(1)
