@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine Visualizer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900" rel="stylesheet">
+    <style>
+        body {
+            padding:0;
+            margin:0;
+            font-family: 'Roboto', sans-serif;   
+        }
+
+        .jumbotron {
+            width:100%;
+            height:100vh;          
+        }
+
+        .jumbotronContainer {
+            padding:30px 0 15px 0;
+        }
+
+        .text {
+            width:500px;
+            margin:auto;
+            text-align: center;
+            margin-bottom:10px;
+        }
+
+        .jumbotronBox {
+            margin:0 100px;
+        }
+
+        .continent {
+            fill: rgb(182, 245, 206);
+            stroke: rgb(18, 126, 61);
+            stroke-width: 0.5;
+       
+        }
+
+        .continent:hover {
+            fill:rgb(106, 223, 151);
+            stroke: rgb(1, 48, 20);
+        }
+
+        .labels {
+            font-family: sans-serif;
+            font-size: 11px;
+            fill: #3c373d;
+        }
+
+        .section {
+            margin-top:100px;
+        }
+
+    </style>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="jumbotronContainer">
+                <h1 class="text">Cuisine Visualizer</h1>
+                <p class="text">Discover a new recipe today. To begin, hover over and click a region on the map to choose your recipe.</p>
+            </div>
+             <div id="container" class="svg-container"></div>
+        </div>
+      
+    </div>
+
+    <script type="text/javascript" src="./scripts/map.js">
+    </script>
+
+    <div class="section">
+        <h1 class="text">Here are the easiest cuisines if you have too much on your plate</h1>
+        <p class="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis tincidunt lorem in laoreet. Aliquam placerat, dui et eleifend fringilla, lorem nunc sollicitudin arcu, sed placerat enim mi venenatis erat. Donec sit amet ligula et ante pharetra pulvinar eu in mauris. Vivamus in tortor quis turpis mattis faucibus quis eu odio. Vestibulum augue felis, rutrum eget dolor ac, consequat tincidunt tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+        
+        <div id="hourglass"></div>
+        <script type="text/javascript" src="./scripts/hourglass.js">
+        </script>
+    </div>
+
+    <div class="section">
+        <h1 class="text">Flavor vs nutrition</h1>
+        <p class="text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis tincidunt lorem in laoreet. Aliquam placerat, dui et eleifend fringilla, lorem nunc sollicitudin arcu, sed placerat enim mi venenatis erat. Donec sit amet ligula et ante pharetra pulvinar eu in mauris. Vivamus in tortor quis turpis mattis faucibus quis eu odio. Vestibulum augue felis, rutrum eget dolor ac, consequat tincidunt tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+        
+        <div id="scatter"></div>
+        <script type="text/javascript" src="./scripts/scatter.js">
+        </script>
+    </div>
+
+        
+</body>
+</html>
