@@ -5,5 +5,6 @@
 | Andreas Aarrestad | 350642 |
 | Bhargav Venugopal  | 349343 |
 
-## Cuisine Visualizer
-[Milestone 1](milestone-1/README.md) 
+## Cuisine and recipe visualizer
+[Milestone 1](milestone-1/README.md)  [Milestone 2](milestone-2/README.md)
+
