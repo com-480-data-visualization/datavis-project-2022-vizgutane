@@ -55,3 +55,6 @@ Each section would also require some specific visualization knowledge:
 Furthermore, resources about the origin locations of different cuisines should be utilized to get accurate placements on the map. 
 
 Finally, we’re planning on using some of the visualization templates from [d3-graph-gallery](https://d3-graph-gallery.com/) as a base for our visualizations and then add application-specific functionality on top. 
+
+### Website 
+https://com-480-data-visualization.github.io/datavis-project-2022-vizgutane/
