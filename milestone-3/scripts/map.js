@@ -13,7 +13,7 @@ var path = d3.geoPath().projection(projection);
 
 // load data  
 var worldmap = d3.json("./milestone-3/data/countries_optimalized.geojson")
-var coordinates = d3.csv("./milestone-3/data/cuisine_coordinates.csv")
+var coordinates = d3.csv("./milestone-3/data/cuisine_aggregates.csv")
 var distances = d3.csv("./milestone-3/data/cuisine_distance_matrix.csv")
 
 // customizable and expandable async function to draw 
