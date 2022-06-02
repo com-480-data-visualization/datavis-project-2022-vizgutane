@@ -1,7 +1,8 @@
 // set the dimensions and margins of the graph
-const margin = {top: 60, right: 125, bottom: 50, left: 350},
-    width = 1260 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+const margin = {top: 60, right: 125, bottom: 50, left: 180},
+    width = 1400 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
+    spacing = 60
 
 // append the svg object to the body of the page
 const svg2 = d3.select("#hourglass")
@@ -12,41 +13,49 @@ const svg2 = d3.select("#hourglass")
     .attr("transform",`translate(${margin.left}, ${margin.top})`
 );
 
-// Parse the Data
-d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
 
+
+// Parse the Data
+d3.csv("./milestone-3/data/cuisine_aggregates.csv", conversor).then( function(data) {
+
+    
     // List of groups = header of the csv files
-    const keys = data.columns.slice(1)
+    data = data.sort(function(x,y){return d3.ascending(x.avg_time, y.avg_time);})
+    const keys = data.columns.slice(0)
+    var cuisines = d3.map(data, function(d){return(d.cuisine)})
+
+    console.log(data)
+
+
 
     // color palette
     const color = d3.scaleOrdinal()
         .domain(keys)
-        .range(d3.schemeSet2);
-
+        .range(d3.schemeSet3);
     //stack the data?
-    const stackedData = d3.stack()
-        .keys(keys)
-        (data)
+    
+        
 
     // Add X axis
+  /*  var ingredients = d3.map(data, function(d){return d.avg_n_ingredients})
     const x = d3.scaleLinear()
-        .domain(d3.extent(data, function(d) { return d.year; }))
-        .range([ 0, width ]);
+        .domain(d3.extent(ingredients))
+        .range([0, width])
+    
     
     const xAxis = svg2.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x).ticks(5))
+        .call(d3.axisBottom(x).ticks(10))
 
-
+            */
     // Add Y axis
+
     const y = d3.scaleLinear()
-        .domain([0, 12000])
+        .domain([0,d3.max(data, function(d) {return d.avg_time})])
         .range([ height, 0 ]);
 
     svg2.append("g")
-        .call(d3.axisLeft(y).ticks(5))
-
-
+        .call(d3.axisLeft(y).ticks(10)) 
 
     //////////
     // BRUSHING AND CHART //
@@ -71,21 +80,30 @@ d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
         .attr("clip-path", "url(#clip)")
 
     // Area generator
-    const area = d3.area()
-        .x(function(d) { return x(d.data.year); })
-        .y0(function(d) { return y(d[0]); })
-        .y1(function(d) { return y(d[1]); })
+    var array = cuisines
+   /* const area = d3.area()
+        .x(data, function(d) { return x(d.data.avg_n_ingredients);})
+        .y0(data, function(d) { return y(d.avg_time);})
+        .y1(data, function(d) { return y(d.avg_time);}) */
 
     // Show the areas
+    var series = svg2.selectAll("g.series")
+        .data(cuisines)
+        .enter().append("g")
+        .attr("class", "series"); 
+    
+   /* series.append("path")
+        .style("fill", d3.schemeSet3)
+        .attr("d", function(d){return area(d);})
     areaChart.selectAll("mylayers")
-        .data(stackedData)
+        .data(cuisines)
         .join("path")
         .attr("class", function(d) { return "myArea " + d.key })
         .style("fill", function(d) { return color(d.key); })
-        .attr("d", area)
+        .attr("d", area) */
 
     // Add the brushing
-    areaChart.append("g")
+    series.append("g")
         .attr("class", "brush")
         .call(brush);
 
@@ -106,10 +124,10 @@ d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
         }
 
         // Update axis and area position
-        xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(5))
-        areaChart.selectAll("path")
-            .transition().duration(1000)
-            .attr("d", area)
+       // xAxis.transition().duration(1000).call(d3.axisBottom(x).ticks(5))
+       // areaChart.selectAll("path")
+       //     .transition().duration(1000)
+       //     .attr("d", area)
     }
 
 
@@ -118,7 +136,7 @@ d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
     // HIGHLIGHT GROUP //
     //////////
 
-    // What to do when one group is hovered
+  /*  // What to do when one group is hovered
     const highlight = function(event,d){
         // reduce opacity of all groups
         d3.selectAll(".myArea").style("opacity", .1)
@@ -129,7 +147,7 @@ d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
     // And when it is not hovered anymore
     const noHighlight = function(event,d){
         d3.selectAll(".myArea").style("opacity", 1)
-    }
+    } */
 
 
 
@@ -139,29 +157,79 @@ d3.csv("./milestone-3/data/cuisine_avg.csv").then( function(data) {
 
     // Add one dot in the legend for each name.
     const size = 20
+
     svg2.selectAll("myrect")
-        .data(keys)
+        .data(array)
         .join("rect")
-        .attr("x", 800)
+        .attr("x", 70)
+        .attr("y", function(d,i){ return (i)*(30)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("width", 900)
+        .attr("height",30)
+        .style("fill", function(d){ return color(d)})
+       // .on("mouseover", highlight)
+       // .on("mouseleave", noHighlight)
+
+
+     // What to do when one group is hovered
+     const highlight = function(d){
+        // reduce opacity of all groups
+        d3.selectAll("rect").style("opacity", .1)
+        // expect the one that is hovered
+        d3.select("."+d).style("opacity", 1)
+    }
+
+    // And when it is not hovered anymore
+    const noHighlight = function(event,d){
+        d3.selectAll("rect").style("opacity", 1)
+    }
+
+    const highlightText = function(d){
+        // reduce opacity of all groups
+        d3.selectAll("mylabels").style("opacity", .1)
+        // expect the one that is hovered
+        d3.select("."+d).style("opacity", 1)
+    }
+
+    // And when it is not hovered anymore
+    const noHighlightText = function(event,d){
+        d3.selectAll("mylabels").style("opacity", 1)
+    }
+
+    // Squares for legend
+    svg2.selectAll("myrect")
+        .data(array)
+        .join("rect")
+        .attr("x", 1050)
         .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("width", size)
         .attr("height", size)
         .style("fill", function(d){ return color(d)})
         .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
+        .on("mouseout", noHighlight)
 
-    // Add one dot in the legend for each name.
+    // Labels for the legends
     svg2.selectAll("mylabels")
-        .data(keys)
+        .data(array)
         .join("text")
-        .attr("x", 800 + size*1.2)
+        .attr("x", 1050 + size*1.2)
         .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
         .style("fill", function(d){ return color(d)})
         .text(function(d){ return d})
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
+        .on("mouseover", highlightText)
+        .on("mouseout", noHighlightText)
 
 })
+
+//converts time and n_ingredients into floats from string
+function conversor(d) {
+    d.avg_time= Number(d.avg_time);
+    d.avg_n_ingredients=Number(d.avg_n_ingredients)
+    return d;
+}
+
+function randomNumberGenerator(max) {
+    return Math.floor(Math.random() * max) + 1
+}
 
