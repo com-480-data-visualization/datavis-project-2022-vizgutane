@@ -1,13 +1,14 @@
 // set the dimensions and margins of the graph
-var margin2 = {top: 20, right: 300, bottom: 30, left: 155},
-    width2 = 1460 - margin2.left - margin2.right,
-    height2 = 400 - margin2.top - margin2.bottom;
+var margin2 = {top: 90, right: 300, bottom: 10, left: 55},
+    width2 = 900 - margin2.left - margin2.right,
+    height2 = 350 - margin2.top - margin2.bottom;
 
 // append the svg object to the body of the page
 var svg2 = d3.select("#hourglass")
   .append("svg")
-    .attr("width", width2 + margin2.left + margin2.right)
+    .attr("width", width2 + margin2.left + margin2.right )
     .attr("height", height2 + margin2.top + margin2.bottom)
+    .attr("class", "hourglassgraph")
   .append("g")
     .attr("transform",
           "translate(" + margin2.left + "," + margin2.top + ")");
@@ -52,7 +53,7 @@ Promise.all([cuisine_timeseries]).then(function([data]){
     .data(stackedData)
     .enter()
     .append("path")
-      .style("fill", function(d) { console.log(d.key) ; return color(d.key); })
+      .style("fill", function(d) { return color(d.key); })
       .attr("d", d3.area()
         .x(function(d, i) { return x(d.data.x); })
         .y0(function(d) { return y(d[0]); })
@@ -64,7 +65,7 @@ Promise.all([cuisine_timeseries]).then(function([data]){
     svg2.selectAll("myrect")
         .data(keys)
         .join("rect")
-        .attr("x", 1100)
+        .attr("x", 20)
         .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
         .attr("width", size)
         .attr("height", size)
@@ -83,8 +84,16 @@ Promise.all([cuisine_timeseries]).then(function([data]){
         .style("alignment-baseline", "middle")
 
 
-    
-
+ 
 })
 
+
+d3.select("#hourglass").append("img")
+    .attr("src","./milestone-3/images/hourglass4.svg")
+    .attr("width", width2 + margin2.left + margin2.right)
+    .attr("height", height2 + margin2.top + margin2.bottom + 22)
+    .attr("class", "hourglass")
+  .append("g")
+    .attr("transform",
+          "translate(" + margin2.left + "," + margin2.top + ")")
 

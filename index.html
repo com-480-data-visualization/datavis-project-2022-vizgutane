@@ -35,8 +35,8 @@
         }
 
         .continent {
-            fill: rgb(182, 245, 206);
-            stroke: rgb(18, 126, 61);
+            fill: #F0D8B2;
+            stroke: #d3b17c;
             stroke-width: 0.5;
        
         }
@@ -52,18 +52,36 @@
             margin-top:100px;
         }
 
-        .axis--y path {
-  stroke: none;
-}   
+
+
+        .hourglass {
+            margin-top:50px;
+            z-index:10;
+            position:absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        #hourglass {
+            height:500px;
+        }
+
+        .hourglassgraph {
+            margin-top:50px;
+            z-index:9;
+            position:absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
 
     </style>
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <div class="jumbotron">
-        <div class="jumbotronContainer">
-                <h1 class="text">Cuisine Visualizer</h1>
-                <p class="text">Discover a new recipe today. To begin, hover over and click a region on the map to choose your recipe.</p>
+        <div class="jumbotronContainer" style="background-color:#333F50">
+                <h1 class="text" style="color:white">Cuisine Visualizer</h1>
+                <p class="text" style="color:white">Discover a new recipe today. To begin, hover over and click a region on the map to choose your recipe.</p>
             </div>
              <div id="container" class="svg-container"></div>
         </div>
@@ -74,7 +92,7 @@
     </script>
 
     <div class="section">
-        <h1 class="text">Here are the easiest cuisines if you have too much on your plate</h1>
+        <h1 style="margin-top:270px" class="text">Here are the easiest cuisines if you have too much on your plate</h1>
         <p class="text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis tincidunt lorem in laoreet. Aliquam placerat, dui et eleifend fringilla, lorem nunc sollicitudin arcu, sed placerat enim mi venenatis erat. Donec sit amet ligula et ante pharetra pulvinar eu in mauris. Vivamus in tortor quis turpis mattis faucibus quis eu odio. Vestibulum augue felis, rutrum eget dolor ac, consequat tincidunt tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
         
