@@ -10,10 +10,12 @@ document.addEventListener('click', e =>{
     }
 })
 
+
 var cuisine_aggregates = d3.csv("./milestone-3/data/cuisine_aggregates.csv")
 var yummly = d3.csv("./milestone-3/data/recipes_subset.csv")
 
 Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){ 
+
    
     // Extract cuisines from data & get html refs
     var cuisines = data.map(dict => dict.cuisine)
@@ -23,8 +25,10 @@ Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){
     let recipe_ingredients = document.getElementById("recipe_ingredients")
     let cooking_time = document.getElementById("recipe_cooking_time")
 
+
     // Adding event listeners to each button 
     dropDownBtn.addEventListener('click', () =>{
+
         let options = cuisines.map(cuisine => '<div><button class="cuisine-link">'+cuisine+'</button></div>').join('\n')
         grid.innerHTML = options; 
         
@@ -43,6 +47,7 @@ Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){
                 cooking_time.innerHTML = "Cooking time: " + recipe.time_s / 60 + " minutes"
                 dropDownBtn.click()
             })
+
        }
     })
 })
