@@ -103,13 +103,14 @@
     </script>
 
     <div class="section" style="display:flex; margin-top:300px">
-        <div style="width:50%;margin-top:200px">
-            <h1 class="text">Here are the "easiest" cuisines if you have too much on your plate</h1>
-            <p class="text">The cuisines are ranked according to the average duration their recipes take to complete, the longest at the top.</p>
+        <div style="width:50%;margin-top:200px;padding-left:10%;position:relative;z-index: 16">
+            <h1 class="text" style="text-align:left">Here are the least time-consuming cuisines if you have too much on your plate</h1>
+            <p class="text" style="text-align:left">The cuisines are ranked according to the average duration their recipes take to complete, the least time-consuming on the bottom.</p>
+            <div id="labelssvg"></div>
         </div>
             
-        <div style="width:40%">
-            <div style="position:relative">
+        <div style="width:20%">
+            <div style="position:relative;z-index:15">
             <div id="hourglass"></div>
             <script type="text/javascript" src="./milestone-3/scripts/hourglass.js">
             </script>
@@ -117,11 +118,10 @@
         </div>
     </div>
 
-    <div class="section" style="margin-top:300px;background-color:#333F50;padding-top:50px;height:1000px;color:white">
-        <h1 class="text">Flavor vs nutrition</h1>
+    <div class="section" style="margin-top:00px;background-color:#333F50;padding-top:50px;height:1000px;color:white">
+        <h1 class="text">Flavor vs Nutrition</h1>
         <p class="text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis tincidunt lorem in laoreet. Aliquam placerat, dui et eleifend fringilla, lorem nunc sollicitudin arcu, sed placerat enim mi venenatis erat. Donec sit amet ligula et ante pharetra pulvinar eu in mauris. Vivamus in tortor quis turpis mattis faucibus quis eu odio. Vestibulum augue felis, rutrum eget dolor ac, consequat tincidunt tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-        </p>
+            Here you can see how the different cuisines rank in terms of flavor and also how much they deviate from the recommended nutritional values. Choose the flavor of your liking and see which cuisines you can have more of and which you should not have to much of.  </p>
        
 
         <div id="scatter">
@@ -132,28 +132,24 @@
         
     </div>
 
-   <center>
+
        <div class="section"style="margin-top:100px" >
-            <h1 class="text">Dish Recommendations</h1>
+            <h1 class="text">Recipe recommendation</h1>
             <p class="text">
-                Select the cuisine you want, and we will recommend some dishes for you to try!
+                So, have you been convinced to try a new cuisine? Select the cuisine you want, and we will give you a recommendation!
 
-            <div class="dropdown" data-dropdown>
-                <button id="dropDownBtn" class="link" data-dropdown-button>Cuisines</button>
-                    <div id="dropDownGrid"  class="dropdown-menu cuisine-grid">
-                        
+            <div class="dropdown" data-dropdown style="margin-left:200px; margin-right:200px">
+                <button id="dropDownBtn"  class="link" data-dropdown-button>Cuisines</button>
+                <div id="dropDownGrid"  class="dropdown-menu cuisine-grid">
+            </div>
+                <h1 id="recipe_header"></h1>
+                <span id="recipe_cooking_time"></span>
+                <p id="recipe_ingredients"></p>
                 
-                        
-                    </div>
-            </div>
-            <div id="dishes" class="dishes">
-
-            </div>
             <script src="./milestone-3/scripts/dropdown.js" defer></script>
             <link rel="stylesheet" href="./milestone-3/scripts/styles.css">
         </div> 
         </script>
-    </center>
-        
+       
 </body>
 </html>
