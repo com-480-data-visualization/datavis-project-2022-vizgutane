@@ -83,10 +83,8 @@ Promise.all([cuisine_timeseries]).then(function([data]){
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
 
-
  
 })
-
 
 d3.select("#hourglass").append("img")
     .attr("src","./milestone-3/images/hourglass4.svg")
