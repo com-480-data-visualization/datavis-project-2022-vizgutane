@@ -92,7 +92,7 @@ Promise.all([cuisine_timeseries]).then(function([data]){
 
 })
 
-// Superposition hourglass svg on
+// Superposition hourglass svg on top of graph
 var hourglass = d3.select("#hourglass").append("img")
     .attr("src","./milestone-3/images/hourglass4.svg")
     .attr("width", width2 + margin2.left + margin2.right)

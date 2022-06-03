@@ -6,5 +6,5 @@
 | Bhargav Venugopal  | 349343 |
 
 ## Cuisine and recipe visualizer
-[Milestone 1](milestone-1/README.md)  [Milestone 2](milestone-2/README.md)
-
+[Milestone 1](milestone-1/README.md)  [Milestone 2](milestone-2/README.md) [Milestone 3](milestone-3/process_book.pdf)
+ 
