@@ -4,7 +4,7 @@ var h = 477;
 var svg = d3.select("div#container")
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .style("background-color","white")
+    .style("background-color","#333F50")
     .attr("viewBox", "0 0 " + w + " " + h)
     .classed("svg-content", true);
 
@@ -55,6 +55,7 @@ Promise.all([worldmap, coordinates, distances])
                     [current_cuisine_coord[0]['longitude'], current_cuisine_coord[0]['latitude']],
                     [other_cuisine_coord[0]['longitude'], other_cuisine_coord[0]['latitude']]
                 ],
+                thickness:cuisine_obj[1],
                 class:current_cuisine}
             )
         })
@@ -68,7 +69,7 @@ Promise.all([worldmap, coordinates, distances])
         .attr("d", function(d){ return path(d)})
         .style("fill", "none")
         .style("stroke", "rgba(0,0,0,0)")
-        .style("stroke-width", 3)
+        .style("stroke-width", function(d) {console.log(d.thickness);return 2 + (d.thickness**5)*7})
         .attr("class", function(d){ return d.class}) // Add class
 
 
@@ -80,16 +81,18 @@ Promise.all([worldmap, coordinates, distances])
         var tooltip = d3.select("body")
             .append("div")
             .style("position", "absolute")
+            .style("background-color", "#F4B183")
             .style("z-index", "10")
             .style("visibility", "hidden")
-            .text(cuisine);
+            .style("padding", "5px 10px")
+            .html("<span><b>" + cuisine + "</b><br/> xx recipes</span>");
 
         svg.append("svg:circle")
             .attr("cx", coordinates[0])
             .attr("cy", coordinates[1])
             .attr("r", 5)
-            .style("fill", "red")
-            .on("mouseover.line", function(){return d3.selectAll('.'+cuisine).style("stroke", "blue")})
+            .style("fill", "#843C0C")
+            .on("mouseover.line", function(){return d3.selectAll('.'+cuisine).style("stroke", "#EFA675")})
             .on("mouseover.tooltip", function(){return tooltip.style("visibility", "visible");})
             .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
             .on("mouseout.line", function(){return d3.selectAll('.'+cuisine).style("stroke", "rgba(0,0,0,0)")})
