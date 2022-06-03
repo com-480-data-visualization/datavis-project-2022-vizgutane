@@ -8,19 +8,16 @@ var svg = d3.select("div#container")
     .attr("viewBox", "0 0 " + w + " " + h)
     .classed("svg-content", true);
 
+// Select projection
 var projection = d3.geoEquirectangular().translate([w/2, h/2]);
 var path = d3.geoPath().projection(projection);
 
-// load data  
+// Load map data and distances
 var worldmap = d3.json("./milestone-3/data/countries_optimalized.geojson")
 var coordinates = d3.csv("./milestone-3/data/cuisine_aggregates.csv")
 var distances = d3.csv("./milestone-3/data/cuisine_distance_matrix.csv")
 
-// customizable and expandable async function to draw 
-Promise.all([worldmap, coordinates, distances])
-    .then(function([worldmap_values, coordinate_values, distance_values]){ 
-    
-    // Map
+Promise.all([worldmap, coordinates, distances]).then(function([worldmap_values, coordinate_values, distance_values]){ 
     svg.selectAll("path")
         .data(worldmap_values.features)
         .enter()
@@ -29,15 +26,14 @@ Promise.all([worldmap, coordinates, distances])
         .attr("d", path)
 
         
-    // Create data: coordinates of start and end
+    // Construction of links
     var links = []
     distance_values.forEach(row => {
-        // Create items array
         var items = Object.keys(row).map(function(key) {
             return [key, row[key]];
         });
         
-        // Sort the array based on the second element
+        // Soring array based on the second element
         items.sort(function(first, second) {
             return second[1] - first[1];
         });
@@ -45,10 +41,10 @@ Promise.all([worldmap, coordinates, distances])
         var current_cuisine = items[0][1];
         items = items.slice(1,6);
 
+        // Getting cuisine coordinates and pushing into link object
         var current_cuisine_coord = coordinate_values.filter(c => c.cuisine == current_cuisine)
         items.forEach(cuisine_obj => {
             var other_cuisine_coord =  coordinate_values.filter(c => c.cuisine == cuisine_obj[0])
-            
             links.push(
                 {type: "LineString",
                 coordinates: [
@@ -61,7 +57,7 @@ Promise.all([worldmap, coordinates, distances])
         })
     })
 
-    // Add the path
+    // Adding the path
     svg.selectAll("myPath")
       .data(links)
       .enter()
@@ -72,13 +68,13 @@ Promise.all([worldmap, coordinates, distances])
         .style("stroke-width", function(d) {return 2 + (d.thickness**5)*7})
         .attr("class", function(d){ return d.class}) // Add class
 
-
+    
+    // Adding tooltips for each cuisine on hover
     coordinate_values.forEach(row => {
         var coordinates = projection([row['longitude'], row['latitude']]);
         var cuisine = row['cuisine'];
         var n_recipes = row['n_recipes'];
 
-        // on-hover tooltip 
         var tooltip = d3.select("body")
             .append("div")
             .style("position", "absolute")
@@ -99,8 +95,6 @@ Promise.all([worldmap, coordinates, distances])
             .on("mouseout.line", function(){return d3.selectAll('.'+cuisine).style("stroke", "rgba(0,0,0,0)")})
             .on("mouseout.tooltip", function(){return tooltip.style("visibility", "hidden");});
     });
-    
-
 });
 
 

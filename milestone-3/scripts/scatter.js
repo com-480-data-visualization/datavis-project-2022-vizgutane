@@ -1,9 +1,7 @@
-// set the dimensions and margins of the graph
 var margin3 = {top: 30, right: 55, bottom: 20, left: 55},
     width3 = 1200 - margin3.left - margin3.right,
-    height3 = 650 - margin3.top - margin3.bottom;
+    height3 = 650 - margin3.top - margin3.bottom
 
-// add svg object to page
 var svg3 = d3.select("#scatter")
   .style("background-color","#333F50")
   .append("svg")
@@ -12,27 +10,24 @@ var svg3 = d3.select("#scatter")
   .append("g")
     .attr("transform","translate(" + margin3.left + "," + margin3.top + ")");
 
-//Read the data
+// Import flavor data
 var flavors = d3.csv("./milestone-3/data/cuisine_flavors.csv")
 Promise.all([flavors]).then(function([data]){ 
-  
 
-  // x axis
+  // Creating x and y axis
   var x = d3.scaleLinear()
     .domain([0, 1])
     .range([ 0, width3 ]);
   svg3.append("g")
     .attr("transform", "translate(0," + height3 + ")")
     .call(d3.axisBottom(x));
-
-  // y axis
   var y = d3.scaleLinear()
     .domain([0, 1])
     .range([ height3, 0]);
   svg3.append("g")
     .call(d3.axisLeft(y));
 
-   // add the options to the button
+   // Adding the the options to the button
    d3.select("#selectButton")
    .selectAll('myOptions')
     .data(['Sweet','Sour','Salty','Piquant','Bitter','Meaty'])
@@ -41,11 +36,9 @@ Promise.all([flavors]).then(function([data]){
    .text(function (d) { return d; }) 
    .attr("value", function (d) { return d; }) 
 
-   // When the button is changed, run the updateChart function
+   // When the button is changed, run the update chart function 
    d3.select("#selectButton").on("change", function(d) {
-    // recover the option that has been chosen
     var selectedOption = d3.select(this).property("value")
-    // run the updateChart function with this selected option
     update(selectedOption)
   })
 
@@ -60,8 +53,8 @@ Promise.all([flavors]).then(function([data]){
       .attr("r", 5.5)
       .style("fill", "#F0D8B2")
 
-
-   var labels = svg3.append('g')
+  // Labels 
+  var labels = svg3.append('g')
   .selectAll("dot")
   .data(data)
   .enter()
@@ -70,7 +63,8 @@ Promise.all([flavors]).then(function([data]){
     .attr("y", function (d) { return y(d.Sweet) + 12; })
     .style("fill", "white")
     .text(function(d) { return d.cuisine;})
-    
+  
+  // X axis  
   svg3.append("text")
     .attr("class", "x-label")
     .attr("text-anchor", "end")
@@ -79,6 +73,7 @@ Promise.all([flavors]).then(function([data]){
     .style("fill", "white")
     .text("Deviation from recommended nutritional values");
 
+  // Dynamic y axis text  
   var y_axis_text = svg3.append("text")
     .attr("class", "y-label")
     .attr("text-anchor", "end")
@@ -88,7 +83,7 @@ Promise.all([flavors]).then(function([data]){
     .style("fill", "white")
     .text("Sweet score");  
   
-
+  // Update function when button is pressed
   function update(selectedOption) {
     console.log(selectedOption);
 
