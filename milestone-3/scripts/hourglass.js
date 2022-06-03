@@ -63,7 +63,7 @@ Promise.all([cuisine_timeseries]).then(function([data]){
     // Add one dot in the legend for each name.
     const size = 20
     svg2.selectAll("myrect")
-        .data(keys)
+        .data(array)
         .join("rect")
         .attr("x", 20)
         .attr("y", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
@@ -72,9 +72,9 @@ Promise.all([cuisine_timeseries]).then(function([data]){
         .style("fill", function(d){ return color(d)})
 
 
-    // Add one dot in the legend for each name.
+    // Labels for the legends
     svg2.selectAll("mylabels")
-        .data(keys)
+        .data(array)
         .join("text")
         .attr("x", 1100 + size*1.2)
         .attr("y", function(d,i){ return 10 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
@@ -96,4 +96,3 @@ d3.select("#hourglass").append("img")
   .append("g")
     .attr("transform",
           "translate(" + margin2.left + "," + margin2.top + ")")
-
