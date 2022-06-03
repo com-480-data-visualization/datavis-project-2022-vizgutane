@@ -20,7 +20,7 @@
         }
 
         .jumbotronContainer {
-            padding:30px 0 15px 0;
+            padding:60px 0 15px 0;
         }
 
         .text {
@@ -74,13 +74,24 @@
             transform: translate(-50%, 0);
         }
 
+        #scatter {
+            position:absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+    
+        }
+
+        .x-label {
+            color:white
+        }
+
     </style>
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <div class="jumbotron">
         <div class="jumbotronContainer" style="background-color:#333F50">
-                <h1 class="text" style="color:white">Cuisine Visualizer</h1>
+                <h1 class="text" style="color:white; font-size:50px">- Cuisine Visualizer -</h1>
                 <p class="text" style="color:white">Discover a new recipe today. To begin, hover over and click a region on the map to choose your recipe.</p>
             </div>
              <div id="container" class="svg-container"></div>
@@ -91,28 +102,38 @@
     <script type="text/javascript" src="./milestone-3/scripts/map.js">
     </script>
 
-    <div class="section">
-        <h1 class="text">Here are the "easiest" cuisines if you have too much on your plate</h1>
-        <p class="text">
-            The cuisines are ranked according to the average duration their recipes take to complete, the longest at the top.
-        
-        <div id="hourglass"></div>
-        <script type="text/javascript" src="./milestone-3/scripts/hourglass.js">
-        </script>
+    <div class="section" style="display:flex; margin-top:300px">
+        <div style="width:50%;margin-top:200px">
+            <h1 class="text">Here are the "easiest" cuisines if you have too much on your plate</h1>
+            <p class="text">The cuisines are ranked according to the average duration their recipes take to complete, the longest at the top.</p>
+        </div>
+            
+        <div style="width:40%">
+            <div style="position:relative">
+            <div id="hourglass"></div>
+            <script type="text/javascript" src="./milestone-3/scripts/hourglass.js">
+            </script>
+            </div>
+        </div>
     </div>
 
-    <div class="section">
+    <div class="section" style="margin-top:300px;background-color:#333F50;padding-top:50px;height:1000px;color:white">
         <h1 class="text">Flavor vs nutrition</h1>
         <p class="text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis tincidunt lorem in laoreet. Aliquam placerat, dui et eleifend fringilla, lorem nunc sollicitudin arcu, sed placerat enim mi venenatis erat. Donec sit amet ligula et ante pharetra pulvinar eu in mauris. Vivamus in tortor quis turpis mattis faucibus quis eu odio. Vestibulum augue felis, rutrum eget dolor ac, consequat tincidunt tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-        
-        <div id="scatter"></div>
+        </p>
+       
+
+        <div id="scatter">
+            <select id="selectButton" style="position:absolute;right:60px;top:20px"></select>
+        </div>
         <script type="text/javascript" src="./milestone-3/scripts/scatter.js">
         </script>
+        
     </div>
 
    <center>
-       <div class="section">
+       <div class="section"style="margin-top:100px" >
             <h1 class="text">Dish Recommendations</h1>
             <p class="text">
                 Select the cuisine you want, and we will recommend some dishes for you to try!

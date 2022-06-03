@@ -69,13 +69,14 @@ Promise.all([worldmap, coordinates, distances])
         .attr("d", function(d){ return path(d)})
         .style("fill", "none")
         .style("stroke", "rgba(0,0,0,0)")
-        .style("stroke-width", function(d) {console.log(d.thickness);return 2 + (d.thickness**5)*7})
+        .style("stroke-width", function(d) {return 2 + (d.thickness**5)*7})
         .attr("class", function(d){ return d.class}) // Add class
 
 
     coordinate_values.forEach(row => {
-        var coordinates = projection([row['longitude'],row['latitude']]);
+        var coordinates = projection([row['longitude'], row['latitude']]);
         var cuisine = row['cuisine'];
+        var n_recipes = row['n_recipes'];
 
         // on-hover tooltip 
         var tooltip = d3.select("body")
@@ -85,7 +86,7 @@ Promise.all([worldmap, coordinates, distances])
             .style("z-index", "10")
             .style("visibility", "hidden")
             .style("padding", "5px 10px")
-            .html("<span><b>" + cuisine + "</b><br/> xx recipes</span>");
+            .html("<span><b>" + cuisine + "</b><br/> " + n_recipes + " recipes</span>");
 
         svg.append("svg:circle")
             .attr("cx", coordinates[0])
