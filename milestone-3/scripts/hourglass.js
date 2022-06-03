@@ -15,8 +15,6 @@ var svg2 = d3.select("#hourglass")
 
 var cuisine_timeseries = d3.csv("./milestone-3/data/out.csv")
 
-
-
 // Parse the Data
 Promise.all([cuisine_timeseries]).then(function([data]){ 
 
@@ -62,48 +60,8 @@ Promise.all([cuisine_timeseries]).then(function([data]){
         .y1(function(d) { return y(d[1]); })
     )
 
-
     // Add one dot in the legend for each name.
     const size = 20
-
-    svg2.selectAll("myrect")
-        .data(array)
-        .join("rect")
-        .attr("x", 70)
-        .attr("y", function(d,i){ return (i)*(30)}) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("width", 900)
-        .attr("height",30)
-        .style("fill", function(d){ return color(d)})
-       // .on("mouseover", highlight)
-       // .on("mouseleave", noHighlight)
-
-
-     // What to do when one group is hovered
-     const highlight = function(d){
-        // reduce opacity of all groups
-        d3.selectAll("rect").style("opacity", .1)
-        // expect the one that is hovered
-        d3.select("."+d).style("opacity", 1)
-    }
-
-    // And when it is not hovered anymore
-    const noHighlight = function(event,d){
-        d3.selectAll("rect").style("opacity", 1)
-    }
-
-    const highlightText = function(d){
-        // reduce opacity of all groups
-        d3.selectAll("mylabels").style("opacity", .1)
-        // expect the one that is hovered
-        d3.select("."+d).style("opacity", 1)
-    }
-
-    // And when it is not hovered anymore
-    const noHighlightText = function(event,d){
-        d3.selectAll("mylabels").style("opacity", 1)
-    }
-
-    // Squares for legend
     svg2.selectAll("myrect")
         .data(array)
         .join("rect")
