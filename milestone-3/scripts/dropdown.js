@@ -11,13 +11,20 @@ document.addEventListener('click', e =>{
 
 })
 
-d3.csv("./milestone-3/data/cuisine_aggregates.csv").then( function(data) {
+
+var cuisine_aggregates = d3.csv("./milestone-3/data/cuisine_aggregates.csv")
+var yummly = d3.csv("./milestone-3/data/recipes_subset.csv")
+
+Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){ 
     //Extract cuisines from csv
-    var cuisines = d3.map(data, function(d){return(d.cuisine)})
+
+    var cuisines = data.map(dict => dict.cuisine)
     let dropDownBtn = document.getElementById('dropDownBtn')
     let grid = document.getElementById("dropDownGrid")
+    let recipe_header = document.getElementById("recipe_header")
+    let recipe_ingredients = document.getElementById("recipe_ingredients")
+    let cooking_time = document.getElementById("recipe_cooking_time")
 
-    
     dropDownBtn.addEventListener('click',() =>{
         //Dynamically add cuisine names as button elements
         let options = cuisines.map(cuisine => '<div><button class="cuisine-link">'+cuisine+'</button></div>').join('\n')
@@ -27,20 +34,18 @@ d3.csv("./milestone-3/data/cuisine_aggregates.csv").then( function(data) {
         let btns = document.getElementsByClassName("cuisine-link")
         for(const btn of btns){
             btn.addEventListener('click', function (){
-                let dishes = document.getElementById("dishes")
-                const tag = document.createElement("div")
-                const text = document.createTextNode(btn.textContent)
-
-                //Clear the children of dishes 
-                dishes.innerHTML = ""
-
-                //Close the dropdown menu
+                recipe = recipes.filter(dict => dict.cuisine == btn.textContent)[0]
+                recipe_header.innerHTML = recipe.dish_name
+                console.log(JSON.parse(recipe.ingredients).map(ingredient => "<li>" + ingredient + "</li>"))
+                recipe_ingredients.innerHTML = "<ul>"
+                JSON.parse(recipe.ingredients).forEach(ingredient => {
+                    recipe_ingredients.innerHTML += "<li>" + ingredient + "</li>"
+                })
+                recipe_ingredients.innerHTML += "</ul>"
+                cooking_time.innerHTML = "Cooking time: " + recipe.time_s / 60 + " minutes"
                 dropDownBtn.click()
-
-                //Append new child element to dishes
-                tag.appendChild(text)
-                dishes.appendChild(tag)
             })
+
        }
     })
 })
