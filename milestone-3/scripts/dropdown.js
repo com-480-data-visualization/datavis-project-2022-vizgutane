@@ -14,6 +14,7 @@ document.addEventListener('click', e =>{
 d3.csv("./milestone-3/data/cuisine_aggregates.csv").then( function(data) {
     //Extract cuisines from csv
     var cuisines = d3.map(data, function(d){return(d.cuisine)})
+    console.log(cuisines)
     let dropDownBtn = document.getElementById('dropDownBtn')
     let grid = document.getElementById("dropDownGrid")
 
@@ -25,6 +26,7 @@ d3.csv("./milestone-3/data/cuisine_aggregates.csv").then( function(data) {
         
         //Add ClickListeners for newly added cuisine buttons
         let btns = document.getElementsByClassName("cuisine-link")
+        console.log(btns)
         for(const btn of btns){
             btn.addEventListener('click', function (){
                 let dishes = document.getElementById("dishes")

@@ -16,7 +16,6 @@ for index, row in df.iterrows():
         cuisines = json.loads(row['cuisine'])
     
         for cuisine in cuisines:
-            # Filtering unwanted cuisine categories
             if cuisine == 'Kid-Friendly' or cuisine == 'Asian':
                 continue
             
@@ -41,11 +40,7 @@ for cuisine, cuisine_values in dataset.items():
     
     dataset[cuisine].pop('count', None)
 
-  
-df4 = pd.DataFrame.from_dict(dataset).transpose()
-df4.to_csv('cuisine_flavors.csv')
-
-# Euclidean distance computation
+# Euc dist
 dataset2 = {}
 for cuisine1, cuisine_values1 in dataset.items():
     dataset2[cuisine1] = {}
@@ -57,6 +52,6 @@ for cuisine1, cuisine_values1 in dataset.items():
 
         dataset2[cuisine1][cuisine2] = dist
 
-#df4 = pd.DataFrame.from_dict(dataset2)
-#df4.to_csv('cuisine_distance_matrix.csv')
+df4 = pd.DataFrame.from_dict(dataset2)
+df4.to_csv('cuisine_distance_matrix.csv')
             

@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var margin2 = {top: 130, right: 300, bottom: 10, left: 55},
+var margin2 = {top: 90, right: 300, bottom: 10, left: 55},
     width2 = 900 - margin2.left - margin2.right,
-    height2 = 550 - margin2.top - margin2.bottom;
+    height2 = 350 - margin2.top - margin2.bottom;
 
 // append the svg object to the body of the page
 var svg2 = d3.select("#hourglass")
@@ -13,7 +13,7 @@ var svg2 = d3.select("#hourglass")
     .attr("transform",
           "translate(" + margin2.left + "," + margin2.top + ")");
 
-var cuisine_timeseries = d3.csv("./milestone-3/data/cuisine_sinusoid_times.csv")
+var cuisine_timeseries = d3.csv("./milestone-3/data/out.csv")
 
 // Parse the Data
 Promise.all([cuisine_timeseries]).then(function([data]){ 
@@ -39,7 +39,7 @@ Promise.all([cuisine_timeseries]).then(function([data]){
   // color palette
   var color = d3.scaleOrdinal()
     .domain(keys)
-    .range(['#a69150','#b19d5e','#c2b280','#cabc91','#dbd1b4'])
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf'])
 
   //stack the data?
   var stackedData = d3.stack()
