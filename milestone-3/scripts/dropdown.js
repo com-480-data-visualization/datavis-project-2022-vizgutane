@@ -1,14 +1,13 @@
-//Add click listener for dropDown button
+//Add click listener for dropdown button
 document.addEventListener('click', e =>{
     const isDropDownBtn = e.target.matches("[data-dropdown-button]")
     if (!isDropDownBtn && e.target.closest("[data-dropdown]") != null) return
  
-    let currentDropDown
+    let currentDropDown;
     if (isDropDownBtn) {
         currentDropDown = e.target.closest("[data-dropdown]")
         currentDropDown.classList.toggle("active")
     }
-
 })
 
 
@@ -16,8 +15,9 @@ var cuisine_aggregates = d3.csv("./milestone-3/data/cuisine_aggregates.csv")
 var yummly = d3.csv("./milestone-3/data/recipes_subset.csv")
 
 Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){ 
-    //Extract cuisines from csv
 
+   
+    // Extract cuisines from data & get html refs
     var cuisines = data.map(dict => dict.cuisine)
     let dropDownBtn = document.getElementById('dropDownBtn')
     let grid = document.getElementById("dropDownGrid")
@@ -25,12 +25,14 @@ Promise.all([cuisine_aggregates, yummly]).then(function([data, recipes]){
     let recipe_ingredients = document.getElementById("recipe_ingredients")
     let cooking_time = document.getElementById("recipe_cooking_time")
 
-    dropDownBtn.addEventListener('click',() =>{
-        //Dynamically add cuisine names as button elements
+
+    // Adding event listeners to each button 
+    dropDownBtn.addEventListener('click', () =>{
+
         let options = cuisines.map(cuisine => '<div><button class="cuisine-link">'+cuisine+'</button></div>').join('\n')
         grid.innerHTML = options; 
         
-        //Add ClickListeners for newly added cuisine buttons
+        // Add potential update of html elements in the case of click
         let btns = document.getElementsByClassName("cuisine-link")
         for(const btn of btns){
             btn.addEventListener('click', function (){
